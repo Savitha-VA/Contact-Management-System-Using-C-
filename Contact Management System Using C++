@@ -1,0 +1,78 @@
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+class Contact {
+public:
+    Contact(string name, string phone, string email, string address) {
+        this->name = name;
+        this->phone = phone;
+        this->email = email;
+        this->address = address;
+    }
+    string getName() { return name; }
+    string getPhone() { return phone; }
+    string getEmail() { return email; }
+    string getAddress() { return address; }
+private:
+    string name;
+    string phone;
+    string email;
+    string address;
+};
+int main() {
+    vector<Contact> contacts;
+    bool running = true;
+    while (running) {
+        cout << "What would you like to do?" << endl;
+        cout << "1. Add a new contact" << endl;
+        cout << "2. View existing contacts" << endl;
+        cout << "3. Exit" << endl;
+        int choice;
+        cin >> choice;
+        switch (choice) {
+            case 1: {
+                cout << "Enter name: ";
+                string name;
+                cin >> name;
+                cout << "Enter phone number: ";
+                string phone;
+                cin >> phone;
+                cout << "Enter email address: ";
+                string email;
+                cin >> email;
+                cout << "Enter address: ";
+                string address;
+                cin >> address;
+                Contact newContact(name, phone, email, address);
+                contacts.push_back(newContact);
+                break;
+            }
+            case 2: {
+                if (contacts.size() == 0) {
+                    cout << "No contacts found." << endl;
+                } else {
+                    for (int i = 0; i < contacts.size(); i++) {
+                        cout << "Name: " << contacts[i].getName() << endl;
+                        cout << "Phone: " << contacts[i].getPhone() << endl;
+                        cout << "Email: " << contacts[i].getEmail() << endl;
+                        cout << "Address: " << contacts[i].getAddress() << endl;
+                        cout << endl;
+                    }
+                }
+                break;
+            }
+            case 3: {
+                running = false;
+                break;
+            }
+            default: {
+                cout << "Invalid choice." << endl;
+                break;
+            }
+        }
+    }
+    return 0;
+}
